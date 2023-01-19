@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <main class="container">
+        <div class="row mb-3 text-center">
+            <div class="col-6 themed-grid-col">
+                <div class="bg-light p-5 rounded mt-3">
+                    <h3>User Defined Prompt</h3>
+                    <p class="lead">Enter your text, question and requests here and let AI handle the rest</p>
+
+                    <hr class="my-4">
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form | crispy }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Prompt Assistant</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-6 themed-grid-col">
+                <div class="bg-light p-5 rounded mt-3">
+                    <h3>AI Generated Result</h3>
+                    <p>Enter your text, question and requests here and let AI handle the rest</p>
+                    <hr class="my-4">
+                    {# Result #}
+                    {% if output %}
+                        <p class="lead">{{ output }}</p>
+                    {% else %}
+                        <div class="alert alert-info" role="alert">
+                            There is no prompt from the user yet. Prompt the AI by entering text and then clicking the
+                            <strong>Prompt Assistant</strong> button.
+                        </div>
+                    {% endif %}
+
+                    {# end Result #}
+                </div>
+            </div>
+        </div>
+
+    </main>
+{% endblock %}
+
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <button type="submit" id="clear_text">Prompt Assistant</button>
+</form>
+<button onclick="document.getElementById('inputBox').value = ''">Clear Text</button>
+
+<script>
+    document.getElementById("clearBtn").addEventListener("click", function () {
+        document.getElementById("user_request").value = "";
+    });
+
+</script>
+
+{% if output %}
+    <p>{{ output }}</p>
+{% endif %}

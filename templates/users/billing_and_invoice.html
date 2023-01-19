@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <main>
+        <div class="container">
+            {# something great here #}
+            <h1 class="visually-hidden">Heroes examples</h1>
+
+            <div class="px-4 py-5 my-5 text-center">
+                <h3 class="display-5 fw-bold">Billing & Invoicing Center</h3>
+                <div class="col-lg-6 mx-auto">
+                    <p class="lead mb-4">Welcome to billing. Here you can check the status of your subscription, make
+                        payment, upgrade your plan,
+                        view previous transactions and track your usage metrics. </p>
+                    <hr class="my-4">
+                    <table class="table table-bordered border-primary">
+                        <thead>
+                        <tr>
+                            <th scope="col">Current Plan</th>
+                            <th scope="col">Last Payment</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>--name-of-the-plan <a type="button" class="btn btn-success" href="#">Upgrade</a></td>
+                            <td>--date-here--</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {# something great ends here #}
+            <div class="row mb-3 text-center">
+                <div class="col-6 themed-grid-col">
+                    <h6>Billing History</h6>
+                    <hr class="my-4">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Subscription Plan</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Reference Code</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-6 themed-grid-col">
+                    <h6>Billing: Pay for Continued Use</h6>
+                    <hr class="my-4">
+                    {# TODO: Check if user has subscription. If not, the form appears. If they do then something else appears here #}
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form | crispy }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Make Payment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
