@@ -32,7 +32,7 @@
             </div>
 
             {# something great ends here #}
-            <div class="row mb-3 text-center">
+            <div class="row mb-3">
                 <div class="col-6 themed-grid-col">
                     <h6>Billing History</h6>
                     <hr class="my-4">
@@ -55,17 +55,17 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-6 themed-grid-col">
+                <div class="col-6 themed-grid-col text-bg-secondary">
                     <h6>Billing: Pay for Continued Use</h6>
                     <hr class="my-4">
                     {# TODO: Check if user has subscription. If not, the form appears. If they do then something else appears here #}
-                    <form method="POST">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            {{ form | crispy }}
-                        </div>
-                        <button type="submit" class="btn btn-primary">Make Payment</button>
-                    </form>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                {{ form | crispy }}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Make Payment</button>
+                        </form>
                 </div>
             </div>
         </div>

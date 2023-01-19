@@ -33,12 +33,13 @@ class PackageList(models.Model):
         verbose_name_plural = 'Subscription Packages'
 
     def __str__(self):
-        return self.name
+        return '{} - RTGS {} - {} days'.format(self.name, self.price_rtgs, self.duration_days)
 
 
 class Billing(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     email = models.EmailField()
+    package = models.ForeignKey(PackageList, on_delete=models.CASCADE)
     phone = models.CharField(max_length=10, help_text='Mobile Number - (e.g. 0776887606')
     paid_on = models.DateTimeField(auto_now_add=True)
     amount = models.FloatField()
@@ -48,7 +49,6 @@ class Billing(models.Model):
     # PayNow Variables
     poll_url = models.TextField(null=True)
     payment_status = models.TextField(null=True)
-    slug = models.SlugField(null=True)
 
     def __str__(self):
         return str(self.user)

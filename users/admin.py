@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Billing, Coupon
+from .models import Billing, Coupon, PackageList
 
 
 class BillingAdmin(admin.ModelAdmin):
@@ -11,5 +11,10 @@ class CouponAdmin(admin.ModelAdmin):
     pass
 
 
+class PackageListAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price_rtgs', 'duration_days', 'description')
+
+
 admin.site.register(Billing, BillingAdmin)
 admin.site.register(Coupon, CouponAdmin)
+admin.site.register(PackageList, PackageListAdmin)
