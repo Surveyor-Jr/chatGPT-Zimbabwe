@@ -1,10 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse
-
 from .forms import PromptForm
 from django.contrib.auth.decorators import user_passes_test
 from users.mixins import subscription_check
+from chat_gptZimbabwe.settings import OPEN_API_KEY
 import openai
 
 
@@ -29,7 +29,7 @@ def chatgpt_prompts(request):
             user_ip = request.META.get('HTTP_X_FORWARDED_FOR', request.META.get('REMOTE_ADDR'))
             # Operation Starts Here
             # OpenAI API Key
-            openai.api_key = "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"
+            openai.api_key = OPEN_API_KEY # TODO: Hope it works
             # Completions Work
             completions = openai.Completion.create(
                 engine="text-davinci-002",

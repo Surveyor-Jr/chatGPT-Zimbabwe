@@ -152,3 +152,6 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'profile_menu'
+
+
+OPEN_API_KEY = os.environ.get('OPEN_API_KEY')
