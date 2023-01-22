@@ -5,8 +5,6 @@
     <main>
         <div class="container">
             {# something great here #}
-            <h1 class="visually-hidden">Heroes examples</h1>
-
             <div class="px-4 py-5 my-5 text-center">
                 <h3 class="display-5 fw-bold">Billing & Invoicing Center</h3>
                 <div class="col-lg-6 mx-auto">
@@ -14,20 +12,35 @@
                         payment, upgrade your plan,
                         view previous transactions and track your usage metrics. </p>
                     <hr class="my-4">
-                    <table class="table table-bordered border-primary">
-                        <thead>
-                        <tr>
-                            <th scope="col">Current Plan</th>
-                            <th scope="col">Last Payment</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr> {# TODO: Need measure for when it does not exist #}
-                            <td>{{ last_records.get_package_display }} <a type="button" class="btn btn-success" href="#">Upgrade</a></td>
-                            <td>{{ last_records.paid_on }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    {% if last_records %}
+                        <table class="table table-bordered border-primary">
+                            <thead>
+                            <tr>
+                                <th scope="col">Current Plan</th>
+                                <th scope="col">Last Payment</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr> {# TODO: Need measure for when it does not exist #}
+                                <td>{{ last_records.get_package_display }} <a type="button" class="btn btn-success"
+                                                                              href="#">Upgrade</a></td>
+                                <td>{{ last_records.paid_on }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        {# show something if subscription has expired #}
+                        {% if last_records.expire_date < today %}
+                            <span class="badge text-bg-danger">The latest subscription has expired. Consider purchasing another subscription for continued use.</span>
+                            {% else %}
+                            <span class="badge text-bg-success">All systems are in check! Your subscription is still active.</span>
+                        {% endif %}
+                        {# end show #}
+                    {% else %}
+                        <div class="alert alert-warning" role="alert">
+                            Looks like you have never made any subscription yet. Fill in the billing form, and select
+                            your preferred package to get started.
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
@@ -45,12 +58,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                       {% for records in billing_records %}
+                        {% for records in billing_records %}
                             <tr>
-                            <th scope="row"><a href="{{ records.get_absolute_url }}">{{ records.paid_on }}</a></th>
+                                <th scope="row"><a href="{{ records.get_absolute_url }}">{{ records.paid_on }}</a></th>
                                 <td>{{ records.get_package_display }}</td>
-                            <td>{{ records.amount }}</td>
-                        </tr>
+                                <td>{{ records.amount }}</td>
+                            </tr>
                         {% endfor %}
                         </tbody>
                     </table>

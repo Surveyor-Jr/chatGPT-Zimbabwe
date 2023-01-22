@@ -1,5 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.urls import reverse
+
 from .forms import PromptForm
+from django.contrib.auth.decorators import user_passes_test
+from users.mixins import subscription_check
 import openai
 
 
@@ -7,7 +12,12 @@ def home_page(request):
     return render(request, 'chatGPT/landing_page.html')
 
 
+@login_required()
 def chatgpt_prompts(request):
+    if not subscription_check(request.user):
+        return render(request, 'error_page.html', {'error_message': 'Your subscription has expired. Purchase another '
+                                                                    'subscription to continue using ZimChatGPT '
+                                                                    'service'})
     form = PromptForm()
     output = None
 

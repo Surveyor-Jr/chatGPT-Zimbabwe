@@ -36,8 +36,6 @@ m
 users/apps.py,5\4\547f374cbbeef99e636bc50f0d5b5ba07651acb5
 >
 users/tests.py,2\3\233a16b9bcdb821f3598bcbef17c91efb65fa793
-9
-	manage.py,3\1\3156ad13e4d695cd526bbb7b031016ecba842270
 A
 chatGPT/models.py,3\5\358bd913cbe2c074a700ede5a3e94098b974a5cd
 @
@@ -48,8 +46,6 @@ P
  users/migrations/0001_initial.py,a\a\aa2b019e6f6bf6fa64eff808af7b58f0ae1bbc56
 \
 ,users/migrations/0002_remove_billing_slug.py,6\3\63c5352e63ad978bca7f98ca7c70e6982581678e
-Q
-!templates/users/profile_menu.html,3\8\38edc1561cc5ee1dc0fd994e16a4ce3acee615cb
 @
 chatGPT/utils.py,9\7\971ccf237ebac4efb75f119ede1855ed0a92d94f
 L
@@ -58,20 +54,12 @@ O
 templates/chatGPT/features.html,9\9\991628fc22eaaf0ee4ef1fce835ba9443a5a6959
 J
 templates/chatGPT/faq.html,f\1\f11c276ddd8340de23c4d7f96c135489180de06a
-@
-chatGPT/views.py,f\9\f95b8b08bf98ebbe61a57729deaa42ae96aa6a43
 G
 templates/messages.html,9\2\924627e410e78e0b95a7bea0cab78584c7948f33
-R
-"users/paynow_payment_processing.py,b\d\bd9e9bfa7e38cd1c306822a9e8a605074d8be499
 L
 templates/users/invoice.html,8\0\80f34a50215cb6c5259bdb391d03b69c35cb0801
 ?
 users/tokens.py,2\e\2e27a1e670323f6c3ab3599ba9688df2f7248de3
-=
-users/urls.py,7\e\7ebb6dc32a2768a7e73ce1c83409f9c85bd4ad6a
-R
-"templates/chatGPT/user_prompt.html,6\9\6997e8178d9e87805bfe18d2e498548ab39d8d6c
 \
 ,templates/users/account_activation_sent.html,2\4\243ca899a5b07bd98ff2f1462a3dbef27f44dd72
 ?
@@ -92,23 +80,9 @@ Y
 )templates/users/password_change_form.html,1\8\188a983d8ea171a48dfb0da065fc64e2b79096b9
 M
 templates/users/register.html,4\e\4e3404b7e45f9c6fa7caf5f8a2ba1deba854da0d
-=
-users/form.py,5\3\5352425bd83e0e46d30ca29e4f7f859c42e46cf3
-H
-chat_gptZimbabwe/urls.py,4\6\466b4b9a952b0abee66b18a388d8de4fca0ae239
-C
-templates/base.html,d\a\da7c237b85a69c00a9ab8c189bf63e22070fcac3
 M
 templates/users/activate.html,b\d\bd6e062ac7d6abfcbba0f8cc73392005d9913499
 J
 templates/users/login.html,f\c\fc8ea2963dff4ad817422218695f376f4d111719
-e
-5templates/users/email_templates/acc_active_email.html,7\f\7fdd1344ace765f9dbcc993225735551dea5632f
-L
-chat_gptZimbabwe/settings.py,6\a\6aec9b7fcf061afb8a3a40d2995cd6b4e1d32c7c
-X
-(templates/users/billing_and_invoice.html,c\6\c67a8716e1f0f3391b0b3393b5f9e7e8bac388b4
->
-users/views.py,5\f\5fc54a09665485d90807a8e72925d27743a0db75
-?
-users/models.py,f\1\f121007a966dcbe0e6d77b6ca09948108f3edfbb
+9
+	manage.py,3\1\3156ad13e4d695cd526bbb7b031016ecba842270

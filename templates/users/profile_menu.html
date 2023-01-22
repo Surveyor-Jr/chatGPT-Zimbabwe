@@ -20,7 +20,24 @@
                     <h6 class="display-5 fw-bold">{{ user.first_name }} {{ user.last_name }}</h6>
                     <p class="col-md-8 fs-4">Username: {{ user.username }} </p>
                     <p class="col-md-8 fs-4">Email: {{ user.email }}</p>
-                    <a href="#" class="btn btn-primary btn-lg" type="button">Edit Profile</a>
+                    <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Edit Profile
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    We're still building. Not much can be done yet on your profile.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Okay, Understood
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -37,14 +54,10 @@
                     <div class="h-100 p-5 bg-light border rounded-3">
                         <h2>Coming Soon</h2>
                         <p>...more features will be coming soon</p>
-{#                        <button class="btn btn-outline-secondary muted" type="button">Not Working</button>#}
+                        {#                        <button class="btn btn-outline-secondary muted" type="button">Not Working</button>#}
                     </div>
                 </div>
             </div>
-
-            <footer class="pt-3 mt-4 text-muted border-top">
-                &copy; 2022
-            </footer>
         </div>
     </main>
 

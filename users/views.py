@@ -1,4 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic import DetailView
 from .form import BillingForm, EmailUserCreationForm, MySetPasswordForm
@@ -13,7 +15,9 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from django.contrib.auth import logout
 from .models import Billing, Token
+from django.utils import timezone
 from django.contrib.auth.views import PasswordChangeView
 from .paynow_payment_processing import processing_payment
 
@@ -35,7 +39,7 @@ def register(request):
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
-                'current_site': current_site, # customly added
+                'current_site': current_site,
             })
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(
@@ -68,7 +72,7 @@ def activate(request, uidb64, token):
             if form.is_valid():
                 form.save()
                 login(request, user)
-                return redirect('login') # TODO: to login page instead
+                return redirect('login')
         return render(request, 'users/activate.html', {'form': form})
     else:
         print(f'Token: {token}, User: {user}')
@@ -89,15 +93,22 @@ def login_view(request):
     return render(request, 'users/login.html', {'form': form})
 
 
+@login_required()
 def profile_menu(request):
     return render(request, 'users/profile_menu.html')
 
 
+@login_required()
 def billing_and_invoice(request):
     user = request.user
     form = BillingForm
-    billing_records = Billing.objects.all()
-    last_records = Billing.objects.filter(user=user).latest('paid_on')
+    try:
+        billing_records = Billing.objects.filter(user=user)  # display all by user
+        last_records = Billing.objects.filter(user=user).latest('paid_on')  # just the latest by user
+        today = timezone.now()
+    except Billing.DoesNotExist:
+        last_records = {}
+        billing_records = {}
 
     if request.method == 'POST':
         form = BillingForm(request.POST)
@@ -111,11 +122,12 @@ def billing_and_invoice(request):
         'form': form,
         'billing_records': billing_records,
         'last_records': last_records,
+        'today': today,
     }
     return render(request, 'users/billing_and_invoice.html', context)
 
 
-class Invoice(DetailView):
+class Invoice(LoginRequiredMixin, DetailView):
     model = Billing
     template_name = 'users/invoice.html'
     pk_url_kwarg = 'reference_code'
@@ -124,3 +136,8 @@ class Invoice(DetailView):
     def get_object(self, queryset=None):
         reference_code = self.kwargs.get(self.pk_url_kwarg)
         return self.model.objects.get(reference_code=reference_code)
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('landing_page')

@@ -26,9 +26,7 @@ PAYMENT_METHOD = (
 
 SUBSCRIPTION_PACKAGE = (
     ('1', 'Testing Package'),
-    ('500', 'Basic'),
-    ('1000', 'Premium'),
-    ('1500', 'Gold Package'),
+    ('500', 'Basic (valid for 24hrs)'),
 )
 
 
@@ -76,7 +74,7 @@ class Billing(models.Model):
     paid_on = models.DateTimeField(auto_now_add=True)
     amount = models.FloatField()
     payment_method = models.CharField(max_length=10, choices=PAYMENT_METHOD)
-    expire_date = models.DateTimeField(default=date.today() + timedelta(days=3))
+    expire_date = models.DateTimeField(default=date.today() + timedelta(hours=24))
     reference_code = models.UUIDField(default=uuid.uuid4, editable=False)
     # PayNow Variables
     poll_url = models.TextField(null=True)

@@ -1,18 +1,20 @@
-from .form import BillingForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from chat_gptZimbabwe.settings import paynow
-from django.conf import settings
-from django.contrib.auth.models import User
-from paynow import Paynow
 import time
 
 
 def processing_payment(request, form):
+    """
+    Processes the paynow payment to activate a user subscription
+    :param request:
+    :param form:
+    :return:
+    """
     phone_number = form.cleaned_data['phone']
     package_selected = form.cleaned_data['package']
     payment_method = form.cleaned_data['payment_method']
-    email = 'matingonk@gmail.com'
+    email = 'matingonk@gmail.com' # TODO: Find way to retrieve the user email
 
     payment = paynow.create_payment('Order #100', email)
     payment.add('Zim-ChatGPT', package_selected)
