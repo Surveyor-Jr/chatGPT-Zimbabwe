@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .forms import PromptForm
 import openai
-import html
 
 
 def home_page(request):
@@ -49,4 +48,16 @@ def chatgpt_prompts(request):
 
 def pricing(request):
     return render(request, 'chatGPT/pricing.html')
+
+
+def about(request):
+    return render(request, 'chatGPT/about.html')
+
+
+def feature(request):
+    return render(request, 'chatGPT/features.html')
+
+
+def faq(request):
+    return render(request, 'chatGPT/faq.html')
 

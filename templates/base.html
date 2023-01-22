@@ -23,22 +23,36 @@
 
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="{% url 'landing_page' %}" class="nav-link px-2 link-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
+                <li><a href="{% url 'features' %}" class="nav-link px-2 link-dark">Features</a></li>
                 <li><a href="{% url 'pricing' %}" class="nav-link px-2 link-dark">Pricing</a></li>
                 <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+                <li><a href="{% url 'about' %}" class="nav-link px-2 link-dark">About</a></li>
             </ul>
 
             <div class="col-md-3 text-end">
-               {% if user.is_authenticated %}
-                   Welcome, {{ user.username |upper}} 😀
+                {% if user.is_authenticated %}
+                    <div class="dropdown text-end">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                             Welcome, {{ user.username |upper }} 😀
+                        </a>
+                        <ul class="dropdown-menu text-small">
+                            <li><a class="dropdown-item" href="{% url 'profile_menu' %}">Profile</a></li>
+                             <li><a class="dropdown-item muted" href="#">Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
                 {% else %}
-                    <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                <button type="button" class="btn btn-primary">Sign-up</button>
+                    <a href="{% url 'login' %}" type="button" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="{% url 'register' %}" type="button" class="btn btn-primary">Sign-up</a>
                 {% endif %}
             </div>
         </header>
     </div>
+{% include 'messages.html' %}
 
     {% block content %}{% endblock %}
 
@@ -46,7 +60,8 @@
     {# footer #}
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <p class="col-md-4 mb-0 text-muted">&copy; 2022 Company, Inc</p>
+            <p class="col-md-4 mb-0 text-muted">&copy; {% now "Y" %} Zim-ChatGPT. <br> Developed by <a href="#">Surveyor-Jr</a>
+            </p>
 
             <a href="/"
                class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">

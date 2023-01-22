@@ -22,9 +22,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>--name-of-the-plan <a type="button" class="btn btn-success" href="#">Upgrade</a></td>
-                            <td>--date-here--</td>
+                        <tr> {# TODO: Need measure for when it does not exist #}
+                            <td>{{ last_records.get_package_display }} <a type="button" class="btn btn-success" href="#">Upgrade</a></td>
+                            <td>{{ last_records.paid_on }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -42,30 +42,33 @@
                             <th scope="col">Date</th>
                             <th scope="col">Subscription Plan</th>
                             <th scope="col">Amount</th>
-                            <th scope="col">Reference Code</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                       {% for records in billing_records %}
+                            <tr>
+                            <th scope="row"><a href="{{ records.get_absolute_url }}">{{ records.paid_on }}</a></th>
+                                <td>{{ records.get_package_display }}</td>
+                            <td>{{ records.amount }}</td>
                         </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
+                    {# Notification for payment #}
+                    {% include 'messages.html' %}
+                    {# End Notification  #}
                 </div>
                 <div class="col-6 themed-grid-col text-bg-secondary">
                     <h6>Billing: Pay for Continued Use</h6>
                     <hr class="my-4">
                     {# TODO: Check if user has subscription. If not, the form appears. If they do then something else appears here #}
-                        <form method="POST">
-                            {% csrf_token %}
-                            <div class="mb-3">
-                                {{ form | crispy }}
-                            </div>
-                            <button type="submit" class="btn btn-primary">Make Payment</button>
-                        </form>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form | crispy }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Make Payment</button>
+                    </form>
                 </div>
             </div>
         </div>
