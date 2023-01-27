@@ -2,12 +2,54 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="container">
-        <form method="POST">
-            {% csrf_token %}
-            <div class="mb-3">
-                {{ form | crispy }}
+        <div class="row">
+            <div class="col-6" style="font-size: small">
+                <h5>Information for the User</h5>
+                <ul>
+                    <li>the Zimbo-AI platform has been developed to benefit the citizens of Zimbabwe and other nations
+                        that have been banned from using the trending AI technology known as ChatGPT
+                    </li>
+                    <li>The tool is still undergoing development hence some operations might not work as perfect as
+                        yet
+                    </li>
+                    <li>By creating an account, you agree that I am under no obligation to keep this tool online given
+                        the various
+                        circumstances of development in the trending world of technology
+                    </li>
+                </ul>
+                <p>For communications, feel free to email me on <a
+                        href="mailto:matingonk@gmail.com">matingonk@gmail.com</a>. </p>
             </div>
-            <button type="submit" class="btn btn-primary">Create Account</button>
-        </form>
+            <form method="POST" class="col-6">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {% for field in form %}
+                        <label>{{ field.label|title }}</label>
+                        <input class="form-control form-control-sm" type="{{ field.widget_type }}"
+                               name="{{ field.html_name }}"
+                               id="{{ field.id_for_label }}" placeholder=""/>
+                    {% endfor %}
+                </div>
+                {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <div class="alert-icon">
+                            <i class="far fa-fw fa-bell"></i>
+                        </div>
+                        <div class="alert-message">
+                            <strong>Validation Error</strong>
+                            {{ form.errors }}
+                        </div>
+
+                        <button type="button" class="btn-close btn-close-white"
+                                data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary">Create Account</button>
+                <div class="col-12 mt-3">
+                    <p class="small mb-0">Already have an account? <a
+                            href="{% url 'login' %}">Login</a></p>
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock content %}

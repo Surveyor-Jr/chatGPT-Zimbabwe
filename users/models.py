@@ -25,8 +25,8 @@ PAYMENT_METHOD = (
 )
 
 SUBSCRIPTION_PACKAGE = (
-    ('1', 'Testing Package'),
-    ('500', 'Basic (valid for 24hrs)'),
+    ('1', 'Testing Package - RTGS 1.00 (valid for 24-hrs)'),
+    ('500', 'Basic - RTGS 500.00 (valid for 24hrs)'),
 )
 
 

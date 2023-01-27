@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container text-center">
+    {# TODO: Add a search form here #}
+    <hr class="mb-3 mt-3">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Input</th>
+                <th scope="col">AI Output</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for prompt in data_list %}
+                <tr>
+                    <th scope="row">{{ prompt.prompt_date_time }}</th>
+                    <td>{{ prompt.user_request | truncatewords:10 }}</td>
+                    {#                                <td>{{ prompt.chatgpt_response | truncatewords:50 }}</td>#}
+                    <td>
+                        <button class="btn btn-dark btn-sm" type="button" data-bs-toggle="modal"
+                                data-bs-target="#{{ prompt.pk }}">View
+                        </button>
+                    </td>
+                    {# modal #}
+                    <div class="modal fade" id="{{ prompt.pk }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    {{ prompt.chatgpt_response }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {# end modal #}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

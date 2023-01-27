@@ -23,9 +23,9 @@
 
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="{% url 'landing_page' %}" class="nav-link px-2 link-secondary">Home</a></li>
-                <li><a href="{% url 'features' %}" class="nav-link px-2 link-dark">Features</a></li>
+                <li><a href="{% url 'features' %}" class="nav-link px-2 link-dark">Tools</a></li>
                 <li><a href="{% url 'pricing' %}" class="nav-link px-2 link-dark">Pricing</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
+                <li><a href="{% url 'faq' %}" class="nav-link px-2 link-dark">FAQs</a></li>
                 <li><a href="{% url 'about' %}" class="nav-link px-2 link-dark">About</a></li>
             </ul>
 
@@ -60,7 +60,7 @@
     {# footer #}
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <p class="col-md-4 mb-0 text-muted">&copy; {% now "Y" %} Zim-ChatGPT. <br> Developed by <a href="#">Surveyor-Jr</a>
+            <p class="col-md-4 mb-0 text-muted">&copy; {% now "Y" %} Zim-ChatGPT. Developed by <a href="#">Surveyor-Jr</a>
             </p>
 
             <a href="/"
@@ -71,11 +71,11 @@
             </a>
 
             <ul class="nav col-md-4 justify-content-end">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+                <li class="nav-item"><a href="{% url 'landing_page' %}" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="{% url 'features' %}" class="nav-link px-2 text-muted">Features</a></li>
+                <li class="nav-item"><a href="{% url 'pricing' %}" class="nav-link px-2 text-muted">Pricing</a></li>
+                <li class="nav-item"><a href="{% url 'faq' %}" class="nav-link px-2 text-muted">FAQs</a></li>
+                <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-muted">About</a></li>
             </ul>
         </footer>
     </div>

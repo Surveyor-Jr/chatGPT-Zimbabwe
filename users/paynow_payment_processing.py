@@ -51,7 +51,9 @@ def processing_payment(request, form):
             return render(request, 'users/billing_and_invoice.html')
 
         else:
-            messages.warning(request, f"The payment transaction failed with payment status: {status.status}. ")
+            # messages.warning(request, f"The payment transaction failed with payment status: {status.status}. ")
+            return render(request, 'error_page.html',
+                          {'error_message': f'The payment failed with the payment status: {status.status}'})
 
     else:
         messages.warning(request, "An error occurred while trying to process the transactions. Please try again later")

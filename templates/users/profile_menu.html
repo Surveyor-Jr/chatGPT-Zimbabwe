@@ -32,7 +32,8 @@
                                     We're still building. Not much can be done yet on your profile.
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Okay, Understood
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Okay,
+                                        Understood
                                     </button>
                                 </div>
                             </div>
@@ -41,7 +42,7 @@
                 </div>
             </div>
 
-            <div class="row align-items-md-stretch">
+            <div class="row align-items-md-stretch mb-3">
                 <div class="col-md-6">
                     <div class="h-100 p-5 text-bg-primary rounded-3">
                         <h2>Billing & Invoices</h2>
@@ -52,11 +53,38 @@
                 </div>
                 <div class="col-md-6">
                     <div class="h-100 p-5 bg-light border rounded-3">
-                        <h2>Coming Soon</h2>
-                        <p>...more features will be coming soon</p>
-                        {#                        <button class="btn btn-outline-secondary muted" type="button">Not Working</button>#}
+                        <h4>Features Menu</h4>
+                        <p>Select a feature to leverage on the power of AI</p>
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="{% url 'user_prompts' %}">ChatGPT (Zimbabwe)</a> </li>
+                            <li class="list-group-item">...coming soon</li>
+                        </ul>
+                        <p class="mt-3">Let us know what you'd like to have on this platform. <a href="mailto:matingonk@gmail.com">Request a Feature</a> </p>
                     </div>
                 </div>
+            </div>
+            {# Second Row #}
+            <div class="row align-items-md-stretch">
+                <div class="col-md-6">
+                    <div class="h-100 p-5 text-bg-dark rounded-3">
+                        <h2>My Database </h2>
+                        <p>Access your previous action records. Select the records you want to access</p>
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="{% url 'user_prompts_data_list' %}">ChatGPT </a> </li>
+                        </ul>
+                    </div>
+                </div>
+{#                <div class="col-md-6">#}
+{#                    <div class="h-100 p-5 bg-light border rounded-3">#}
+{#                        <h4>Features Menu</h4>#}
+{#                        <p>Select a feature to leverage on the power of AI</p>#}
+{#                        <ul class="list-group">#}
+{#                            <li class="list-group-item"><a href="{% url 'user_prompts' %}">ChatGPT (Zimbabwe)</a> </li>#}
+{#                            <li class="list-group-item">...coming soon</li>#}
+{#                        </ul>#}
+{#                        <p class="mt-3">Let us know what you'd like to have on this platform. <a href="mailto:matingonk@gmail.com">Request a Feature</a> </p>#}
+{#                    </div>#}
+{#                </div>#}
             </div>
         </div>
     </main>

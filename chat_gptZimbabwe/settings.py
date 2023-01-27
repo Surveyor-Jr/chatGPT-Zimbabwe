@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+# from users.middleware.redirect_if_logged_in import RedirectIfLoggedInMiddleware
 
 # Env variables
 import os
@@ -58,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Custom Middleware
+    'users.middleware.redirect_if_logged_in.RedirectIfLoggedInMiddleware',
 ]
 
 ROOT_URLCONF = 'chat_gptZimbabwe.urls'
@@ -153,5 +156,11 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'profile_menu'
 
+# Open API Setting
+OPEN_API_KEY = os.environ['OPEN_API_KEY']
 
-OPEN_API_KEY = os.environ.get('OPEN_API_KEY')
+# Heroku Prep
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+

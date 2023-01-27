@@ -1,12 +1,8 @@
 
-A
-users/__init__.py,f\e\febbc4ea5b538b4c8ea1a8875d49dfd1a2ae1a60
 L
 users/migrations/__init__.py,2\3\230870cff2cd30fc8669ed5dfc155cee3aa7b30f
 H
 chat_gptZimbabwe/asgi.py,9\6\968f35cdf12c0715bfebd6b0d06a4d84d725bf64
-N
-templates/chatGPT/pricing.html,e\b\ebcf287510a89a40dd00bed8c3ec064bccb1070d
 H
 chat_gptZimbabwe/wsgi.py,4\9\4992ba418dbad37fc70057178e95a442ce27e4ef
 L
@@ -36,22 +32,14 @@ m
 users/apps.py,5\4\547f374cbbeef99e636bc50f0d5b5ba07651acb5
 >
 users/tests.py,2\3\233a16b9bcdb821f3598bcbef17c91efb65fa793
-A
-chatGPT/models.py,3\5\358bd913cbe2c074a700ede5a3e94098b974a5cd
 @
 chatGPT/forms.py,2\d\2de2a05a91da4e7aa3651f0e987d7da21954051d
-S
-#templates/chatGPT/landing_page.html,a\0\a04f6be72d56382ad559b384c9e2168917c46b47
 P
  users/migrations/0001_initial.py,a\a\aa2b019e6f6bf6fa64eff808af7b58f0ae1bbc56
 \
 ,users/migrations/0002_remove_billing_slug.py,6\3\63c5352e63ad978bca7f98ca7c70e6982581678e
-@
-chatGPT/utils.py,9\7\971ccf237ebac4efb75f119ede1855ed0a92d94f
 L
 templates/chatGPT/about.html,a\8\a8a74268728974bbe582fddc95d6ee6ecc356871
-O
-templates/chatGPT/features.html,9\9\991628fc22eaaf0ee4ef1fce835ba9443a5a6959
 J
 templates/chatGPT/faq.html,f\1\f11c276ddd8340de23c4d7f96c135489180de06a
 G
@@ -62,8 +50,6 @@ L
 users/tokens.py,2\e\2e27a1e670323f6c3ab3599ba9688df2f7248de3
 \
 ,templates/users/account_activation_sent.html,2\4\243ca899a5b07bd98ff2f1462a3dbef27f44dd72
-?
-chatGPT/urls.py,d\c\dc49993f27cedf4e834b26139fa5664206bf3fa5
 _
 /templates/users/account_activation_invalid.html,b\7\b7d948fc758420eb4e23b4f2f4169147e25c8de9
 >
@@ -79,10 +65,16 @@ X
 Y
 )templates/users/password_change_form.html,1\8\188a983d8ea171a48dfb0da065fc64e2b79096b9
 M
-templates/users/register.html,4\e\4e3404b7e45f9c6fa7caf5f8a2ba1deba854da0d
-M
 templates/users/activate.html,b\d\bd6e062ac7d6abfcbba0f8cc73392005d9913499
-J
-templates/users/login.html,f\c\fc8ea2963dff4ad817422218695f376f4d111719
 9
 	manage.py,3\1\3156ad13e4d695cd526bbb7b031016ecba842270
+H
+chat_gptZimbabwe/urls.py,4\6\466b4b9a952b0abee66b18a388d8de4fca0ae239
+=
+users/urls.py,7\e\7ebb6dc32a2768a7e73ce1c83409f9c85bd4ad6a
+R
+"templates/chatGPT/user_prompt.html,6\9\6997e8178d9e87805bfe18d2e498548ab39d8d6c
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+?
+users/mixins.py,c\f\cf2a97fcdb59e15250edceaf58436f5597900db2

@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils import timezone
-from .models import Billing
+from users.models import Billing
 
 
 def subscription_check(user):
@@ -12,7 +12,10 @@ def subscription_check(user):
     :param user:
     :return: True or False
     """
-    subscription = Billing.objects.filter(user=user).latest('expire_date') # latest payment
+    try:
+        subscription = Billing.objects.filter(user=user).latest('expire_date')
+    except Billing.DoesNotExist:
+        return False
     if subscription.expire_date < timezone.now():
         return False
     return True

@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Account activation email</title>
-</head>
-<body>
-    <h2>Hello {{ user.first_name }} {{ user.last_name }},</h2>
-    <p>Thank you for registering with our site {{ current_site }}.</p>
-    <p>Please click on the link below to activate your account:</p>
-    <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">Activate my account</a>
-    <p>Your username is: {{ user.username }}</p>
-    <p>If you did not register on our site, please ignore this email.</p>
-</body>
-</html>
+{% autoescape off %}
+
+    Hello {{ user.first_name }} {{ user.last_name }},
+
+    Thank you for registering with our site {{ current_site }}.
+
+    Please click on the link to activate your account: http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+    Your username is: {{ user.username }}
+
+    If you're having any troubles during this process get in touch with Kumbirai (matingonk@gmail.com)
+    If you did not register on our site, please ignore this email.
+
+    ***
+
+{% endautoescape %}

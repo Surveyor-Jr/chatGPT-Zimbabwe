@@ -1,15 +1,13 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
 from django.views.generic import DetailView
 from .form import BillingForm, EmailUserCreationForm, MySetPasswordForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login
 from django.shortcuts import render, redirect
-from django.urls import reverse
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
-# from django.utils.text import force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
@@ -18,11 +16,12 @@ from django.core.mail import EmailMessage
 from django.contrib.auth import logout
 from .models import Billing, Token
 from django.utils import timezone
-from django.contrib.auth.views import PasswordChangeView
 from .paynow_payment_processing import processing_payment
 
 
 def register(request):
+    if request.user.is_authenticated:
+        messages.info(request, 'You are already logged in!')
     if request.method == 'POST':
         form = EmailUserCreationForm(request.POST)
         if form.is_valid():
@@ -45,8 +44,14 @@ def register(request):
             email = EmailMessage(
                 mail_subject, message, to=[to_email]
             )
-            email.send()
-            return redirect('account_activation_sent')
+            try:
+                email.send()
+                return redirect('account_activation_sent')
+            except:
+                return render(request, 'error_page.html',
+                              {'error_message': 'An account was created but the email activation link was not sent to '
+                                                'the specified email address. Please contact the administrator'})
+
     else:
         form = EmailUserCreationForm()
     return render(request, 'users/register.html', {'form': form})
@@ -102,10 +107,10 @@ def profile_menu(request):
 def billing_and_invoice(request):
     user = request.user
     form = BillingForm
+    today = timezone.now()
     try:
         billing_records = Billing.objects.filter(user=user)  # display all by user
         last_records = Billing.objects.filter(user=user).latest('paid_on')  # just the latest by user
-        today = timezone.now()
     except Billing.DoesNotExist:
         last_records = {}
         billing_records = {}
